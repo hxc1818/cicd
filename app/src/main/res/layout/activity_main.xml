@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ECEFF1"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- 标题 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="🛡️ 开门卫士 (CheckDoor)"
+            android:textColor="#263238"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:text="贴在门上检测开门并联动电脑锁屏"
+            android:textColor="#546E7A"
+            android:textSize="13sp" />
+
+        <!-- 状态大卡片 -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="3dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tvDoorStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="⏳ 请先校准关门与开门角度"
+                    android:textColor="@color/status_yellow"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="12dp"
+                    android:background="#E0E0E0" />
+
+                <TextView
+                    android:id="@+id/tvCurrentAngle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="当前朝向角度: --°"
+                    android:textColor="#37474F"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tvClosedAngle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="关门基准角度: 未设定"
+                    android:textColor="#546E7A"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvOpenAngle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="开门参考角度: 未设定"
+                    android:textColor="#546E7A"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 校准按钮组 -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="🎯 角度校准"
+                    android:textColor="#263238"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnCalibrateClosed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:backgroundTint="#2E7D32"
+                    android:text="1. 门完全关上时：点击校准为「关门」"
+                    android:textAllCaps="false" />
+
+                <Button
+                    android:id="@+id/btnCalibrateOpen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:backgroundTint="#C62828"
+                    android:text="2. 门推开一定角度时：点击校准为「开门」"
+                    android:textAllCaps="false" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 参数配置卡片 -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tvSensitivityLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="触发灵敏度阈值: 8° (转动超过此角度即触发开门)"
+                    android:textColor="#263238"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <SeekBar
+                    android:id="@+id/sbSensitivity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:max="30"
+                    android:progress="8" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="10dp"
+                    android:background="#E0E0E0" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="局域网电脑 IP (默认 255.255.255.255 广播)"
+                    android:textColor="#37474F"
+                    android:textSize="13sp" />
+
+                <EditText
+                    android:id="@+id/etTargetIp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="255.255.255.255"
+                    android:inputType="text"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="UDP 目标端口 (默认 39888)"
+                    android:textColor="#37474F"
+                    android:textSize="13sp" />
+
+                <EditText
+                    android:id="@+id/etTargetPort"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="39888"
+                    android:inputType="number"
+                    android:text="39888"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 服务开关 -->
+        <Button
+            android:id="@+id/btnToggleService"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#1976D2"
+            android:text="▶️ 启动后台实时监控服务"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <!-- 测试按钮行 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnTestOpen"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:backgroundTint="#E53935"
+                android:text="测试: 触发电脑锁屏"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/btnTestClose"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:backgroundTint="#43A047"
+                android:text="测试: 解除电脑锁屏"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvLogs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="24dp"
+            android:background="#263238"
+            android:padding="8dp"
+            android:text="[就绪] 请关门校准后开启监控"
+            android:textColor="#80CBC4"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+</ScrollView>
